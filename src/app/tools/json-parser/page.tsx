@@ -14,7 +14,7 @@ export default function JsonParser() {
     try {
       const parsed = JSON.stringify(JSON.parse(input), null, 2)
       setOutput(parsed)
-    } catch (e) {
+    } catch {
       setOutput('Invalid JSON')
     }
   }
