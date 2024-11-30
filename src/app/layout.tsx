@@ -4,6 +4,7 @@ import Link from 'next/link'
 import './globals.css'
 import { ThemeProvider } from 'next-themes'
 import ThemeToggle from '@/components/theme-toggle'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -43,6 +44,7 @@ export default function RootLayout({
           <footer className="mt-12 py-6 text-center text-gray-600">
             <p>© 2024 WonderfulTools. All rights reserved.</p>
           </footer>
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
