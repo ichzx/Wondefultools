@@ -1,53 +1,50 @@
 import { tools } from '@/config/tools'
 import Link from 'next/link'
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-      <div className="container mx-auto px-4 py-16">
-        {/* Header section - Modern title styles */}
-        <header className="text-center mb-16">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text mb-6">
-            WonderfulTools
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            A Collection of Simple and Useful Online Tools
-          </p>
-        </header>
+    <main className="flex-1">
+      <div className="container relative">
+        <div className="mx-auto flex flex-col items-center px-4 py-16">
+          {/* Header section with Shadcn UI styling */}
+          <section className="mx-auto flex max-w-[980px] flex-col items-center gap-2 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-20">
+            <h1 className="text-center text-3xl font-bold leading-tight tracking-tighter md:text-6xl lg:leading-[1.1]">
+              Wonderful<span className="text-primary">Tools</span>
+            </h1>
+            <p className="max-w-[750px] text-center text-lg text-muted-foreground sm:text-xl">
+              A Collection of Simple and Useful Online Tools
+            </p>
+          </section>
 
-        {/* Tool cards grid - remains the same */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tools.map((tool) => (
-            <Link 
-              key={tool.id}
-              href={tool.path}
-              className="group"
-            >
-              <div className="h-full bg-white dark:bg-gray-800 rounded-xl p-6 
-                shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out
-                border border-gray-100 dark:border-gray-700
-                hover:border-blue-500 dark:hover:border-blue-400
-                transform hover:-translate-y-1">
-                <div className="flex flex-col items-center space-y-4">
-                  <div className="p-3 bg-blue-50 dark:bg-gray-700 rounded-full
-                    group-hover:bg-blue-100 dark:group-hover:bg-gray-600 
-                    transition-colors duration-300">
-                    <tool.icon className="w-8 h-8 text-blue-500 dark:text-blue-400" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                    {tool.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-center text-sm">
-                    {tool.description}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          ))}
+          {/* Tool cards grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-[980px]">
+            {tools.map((tool) => (
+              <Link 
+                key={tool.id}
+                href={tool.path}
+                className="transition-colors"
+              >
+                <Card className="h-full hover:bg-muted/50">
+                  <CardHeader>
+                    <div className="flex items-center justify-center mb-4">
+                      <div className="p-2 bg-primary/10 rounded-lg">
+                        <tool.icon className="w-6 h-6 text-primary" />
+                      </div>
+                    </div>
+                    <CardTitle className="text-center">{tool.title}</CardTitle>
+                    <CardDescription className="text-center">
+                      {tool.description}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              </Link>
+            ))}
+          </div>
+          <SpeedInsights />
         </div>
-        <SpeedInsights />
       </div>
-    </div>
+    </main>
   )
 }
